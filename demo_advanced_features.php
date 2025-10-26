@@ -300,38 +300,6 @@ try {
                     </div>
                 <?php endif; ?>
                 
-                <!-- Example Results -->
-                <div class="text-sm text-gray-600 mb-2 font-bold">Example Results:</div>
-                <?php
-                // Test with different products
-                $test_products = ['Organic Apple', 'Kale', 'Almond Milk', 'Brown Rice'];
-                ?>
-                
-                <div class="space-y-3">
-                    <?php foreach($test_products as $test_prod): ?>
-                    <?php
-                    $stmt = $pdo->prepare("CALL get_product_details(?, @vendor, @category)");
-                    $stmt->execute([$test_prod]);
-                    $result = $pdo->query("SELECT @vendor as vendor_name, @category as category")->fetch();
-                    ?>
-                    <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded">
-                        <div class="text-sm font-bold mb-2">
-                            Input: <span class="text-blue-600">"<?= htmlspecialchars($test_prod) ?>"</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="bg-white p-3 rounded shadow-sm">
-                                <div class="text-xs text-gray-500 mb-1">OUT Parameter 1: Vendor Name</div>
-                                <div class="font-bold text-green-600"><?= htmlspecialchars($result['vendor_name']) ?></div>
-                            </div>
-                            <div class="bg-white p-3 rounded shadow-sm">
-                                <div class="text-xs text-gray-500 mb-1">OUT Parameter 2: Category</div>
-                                <div class="font-bold text-purple-600"><?= htmlspecialchars($result['category']) ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-
                 <div class="bg-gray-900 text-green-400 p-3 rounded mt-4 text-xs">
                     <strong>SQL Usage:</strong><br>
                     <code>CALL get_product_details('Kale', @vendor, @category);</code><br>
