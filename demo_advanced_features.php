@@ -182,7 +182,63 @@ try {
                     </div>
                 </div>
 
-                <!-- Stored Procedure for Multi-Value Return (Better Approach) -->
+                <!-- Function: get_product_info (returns multiple values as string) -->
+                <div class="border border-green-200 rounded-lg p-4">
+                    <h3 class="font-bold text-lg mb-3">Function: get_product_info(product_name) - Multi-Value Return</h3>
+                    <p class="text-sm text-gray-600 mb-3">
+                        <strong>Input:</strong> Product name → <strong>Returns:</strong> Vendor name AND Category (as formatted string)
+                    </p>
+
+                    <!-- Interactive Input Form -->
+                    <form method="GET" class="mb-4 bg-purple-50 p-4 rounded-lg">
+                        <div class="flex gap-3">
+                            <div class="flex-1">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-search mr-1"></i>Enter Product Name:
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="search_product_info" 
+                                    value="<?= htmlspecialchars($_GET['search_product_info'] ?? '') ?>"
+                                    placeholder="e.g., Organic Apple, Kale, Banana..."
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                                >
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                                    <i class="fas fa-info-circle mr-2"></i>Get Info
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <?php if (isset($_GET['search_product_info']) && !empty($_GET['search_product_info'])): ?>
+                        <?php
+                        $search_product_info = $_GET['search_product_info'];
+                        $stmt = $pdo->prepare("SELECT get_product_info(?) as info");
+                        $stmt->execute([$search_product_info]);
+                        $result = $stmt->fetch();
+                        ?>
+                        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+                            <div class="font-bold text-purple-800 mb-1">
+                                <i class="fas fa-box mr-2"></i>Product: "<?= htmlspecialchars($search_product_info) ?>"
+                            </div>
+                            <div class="text-purple-700 font-mono text-sm">
+                                <i class="fas fa-arrow-right mr-2"></i><?= htmlspecialchars($result['info']) ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="bg-gray-900 text-green-400 p-3 rounded mt-3 text-xs">
+                        <strong>SQL Usage:</strong><br>
+                        <code>SELECT get_product_info('Kale');</code><br>
+                        <span class="text-gray-400">-- Returns: "Vendor: Green Valley | Category: Vegetables"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stored Procedure for Multi-Value Return (Better Approach) -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <h2 class="text-2xl font-bold text-green-700 mb-4">
                 <i class="fas fa-code-branch mr-2"></i>3. Stored Procedure (TRUE Multi-Value Return)
