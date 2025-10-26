@@ -311,30 +311,6 @@ $sql_demos['CASE WHEN'] = [
     'result' => $pdo->query($sql)->fetchAll()
 ];
 
-// ==================== Window Functions (MySQL 8.0+) ====================
-
-try {
-    $sql = "SELECT product_id, name, category, price,
-    ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS price_rank,
-    RANK() OVER (ORDER BY price DESC) AS overall_rank,
-    DENSE_RANK() OVER (ORDER BY price DESC) AS dense_rank
-    FROM products
-    ORDER BY category, price DESC";
-    $result = $pdo->query($sql);
-    $sql_demos['Window Functions'] = [
-        'sql' => $sql,
-        'desc' => 'ROW_NUMBER, RANK, DENSE_RANK - ranking functions within partitions.',
-        'result' => $result->fetchAll()
-    ];
-} catch (Exception $e) {
-    $sql_demos['Window Functions'] = [
-        'sql' => $sql,
-        'desc' => 'Window functions require MySQL 8.0+',
-        'result' => [],
-        'error' => 'Not supported in this MySQL version'
-    ];
-}
-
 // ==================== STORED PROCEDURE (Simulated) ====================
 
 // Simulating what a stored procedure would return - customer stats
