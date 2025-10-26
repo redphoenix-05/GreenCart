@@ -34,96 +34,10 @@ try {
             <i class="fas fa-code mr-3"></i>Advanced SQL Features Demo
         </h1>
 
-        <!-- ENUM Data Types Demo -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 class="text-2xl font-bold text-green-700 mb-4">
-                <i class="fas fa-list-check mr-2"></i>1. User-Defined Data Types (ENUM)
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Customer Tiers -->
-                <div class="border border-green-200 rounded-lg p-4">
-                    <h3 class="font-bold text-lg mb-3">Customer Tiers (ENUM)</h3>
-                    <?php
-                    $stmt = $pdo->query("
-                        SELECT name, customer_tier, loyalty_points 
-                        FROM Customers 
-                        ORDER BY loyalty_points DESC
-                    ");
-                    ?>
-                    <table class="w-full text-sm">
-                        <thead class="bg-green-100">
-                            <tr>
-                                <th class="p-2 text-left">Customer</th>
-                                <th class="p-2 text-left">Tier</th>
-                                <th class="p-2 text-right">Points</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while($row = $stmt->fetch()): ?>
-                            <tr class="border-b">
-                                <td class="p-2"><?= htmlspecialchars($row['name']) ?></td>
-                                <td class="p-2">
-                                    <span class="px-2 py-1 rounded text-xs font-bold
-                                        <?= $row['customer_tier'] == 'Platinum' ? 'bg-purple-200 text-purple-800' : '' ?>
-                                        <?= $row['customer_tier'] == 'Gold' ? 'bg-yellow-200 text-yellow-800' : '' ?>
-                                        <?= $row['customer_tier'] == 'Silver' ? 'bg-gray-200 text-gray-800' : '' ?>
-                                        <?= $row['customer_tier'] == 'Bronze' ? 'bg-orange-200 text-orange-800' : '' ?>
-                                    ">
-                                        <?= $row['customer_tier'] ?>
-                                    </span>
-                                </td>
-                                <td class="p-2 text-right"><?= $row['loyalty_points'] ?></td>
-                            </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Product Stock Status -->
-                <div class="border border-green-200 rounded-lg p-4">
-                    <h3 class="font-bold text-lg mb-3">Product Stock Status (ENUM)</h3>
-                    <?php
-                    $stmt = $pdo->query("
-                        SELECT name, stock_status, price 
-                        FROM Products 
-                        ORDER BY stock_status
-                    ");
-                    ?>
-                    <table class="w-full text-sm">
-                        <thead class="bg-green-100">
-                            <tr>
-                                <th class="p-2 text-left">Product</th>
-                                <th class="p-2 text-left">Status</th>
-                                <th class="p-2 text-right">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while($row = $stmt->fetch()): ?>
-                            <tr class="border-b">
-                                <td class="p-2"><?= htmlspecialchars($row['name']) ?></td>
-                                <td class="p-2">
-                                    <span class="px-2 py-1 rounded text-xs font-bold
-                                        <?= $row['stock_status'] == 'In Stock' ? 'bg-green-200 text-green-800' : '' ?>
-                                        <?= $row['stock_status'] == 'Low Stock' ? 'bg-yellow-200 text-yellow-800' : '' ?>
-                                        <?= $row['stock_status'] == 'Out of Stock' ? 'bg-red-200 text-red-800' : '' ?>
-                                    ">
-                                        <?= $row['stock_status'] ?>
-                                    </span>
-                                </td>
-                                <td class="p-2 text-right">$<?= number_format($row['price'], 2) ?></td>
-                            </tr>
-                            <?php endwhile; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
         <!-- User-Defined Functions Demo -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <h2 class="text-2xl font-bold text-green-700 mb-4">
-                <i class="fas fa-function mr-2"></i>2. User-Defined Functions
+                <i class="fas fa-function mr-2"></i>1. User-Defined Functions
             </h2>
 
             <div class="space-y-6">
@@ -241,7 +155,7 @@ try {
         <!-- Stored Procedure for Multi-Value Return (Better Approach) -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <h2 class="text-2xl font-bold text-green-700 mb-4">
-                <i class="fas fa-code-branch mr-2"></i>3. Stored Procedure (TRUE Multi-Value Return)
+                <i class="fas fa-code-branch mr-2"></i>2. Stored Procedure (TRUE Multi-Value Return)
             </h2>
 
             <div class="border border-green-200 rounded-lg p-4">
@@ -312,7 +226,7 @@ try {
         <!-- Triggers Demo -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <h2 class="text-2xl font-bold text-green-700 mb-4">
-                <i class="fas fa-bolt mr-2"></i>4. Triggers in Action
+                <i class="fas fa-bolt mr-2"></i>3. Triggers in Action
             </h2>
 
             <div class="space-y-6">
