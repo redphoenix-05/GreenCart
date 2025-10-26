@@ -1,0 +1,16 @@
+/* Simple styling for GreenCart demo */
+body{font-family: Arial,Helvetica,sans-serif;background:#f6f9f4;color:#1b2b18}
+.container{max-width:980px;margin:30px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+h1{margin-top:0;color:#0b5930}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+.card{display:block;padding:16px;border-radius:6px;background:#eaf6ec;color:#0b5930;text-decoration:none;font-weight:600;text-align:center;border:1px solid #cfead4}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 12px rgba(0,0,0,0.06)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid #eee}
+.actions a{margin-right:8px}
+.form-row{margin-bottom:8px}
+label{display:block;font-size:14px;margin-bottom:4px}
+input[type=text],input[type=email],input[type=number],textarea,select,input[type=datetime-local]{width:100%;padding:8px;border-radius:4px;border:1px solid #ddd}
+.btn{display:inline-block;padding:8px 12px;background:#0b8a47;color:#fff;border-radius:4px;text-decoration:none}
+.danger{background:#c03a3a}
+footer{margin-top:18px;text-align:center;color:#6b6b6b}
