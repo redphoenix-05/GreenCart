@@ -133,6 +133,50 @@ try {
                     <p class="text-sm text-gray-600 mb-3">
                         <strong>Input:</strong> Product name → <strong>Returns:</strong> List of customers who bought it
                     </p>
+
+                    <!-- Interactive Input Form -->
+                    <form method="GET" class="mb-4 bg-blue-50 p-4 rounded-lg">
+                        <div class="flex gap-3">
+                            <div class="flex-1">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-search mr-1"></i>Enter Product Name:
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="search_product" 
+                                    value="<?= htmlspecialchars($_GET['search_product'] ?? '') ?>"
+                                    placeholder="e.g., Organic Apple, Kale, Banana..."
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                >
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                                    <i class="fas fa-search mr-2"></i>Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <?php if (isset($_GET['search_product']) && !empty($_GET['search_product'])): ?>
+                        <?php
+                        $search_product = $_GET['search_product'];
+                        $stmt = $pdo->prepare("SELECT get_customers_by_product(?) as customers");
+                        $stmt->execute([$search_product]);
+                        $result = $stmt->fetch();
+                        ?>
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                            <div class="font-bold text-green-800 mb-1">
+                                <i class="fas fa-box mr-2"></i>Product: "<?= htmlspecialchars($search_product) ?>"
+                            </div>
+                            <div class="text-green-700">
+                                <i class="fas fa-users mr-2"></i>Customers: 
+                                <span class="font-bold"><?= htmlspecialchars($result['customers']) ?></span>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- All Products Table -->
+                    <div class="text-sm text-gray-600 mb-2 font-bold">All Products and Their Customers:</div>
                     <?php
                     $products = $pdo->query("SELECT DISTINCT name FROM Products ORDER BY name")->fetchAll();
                     ?>
@@ -172,6 +216,49 @@ try {
                     <p class="text-sm text-gray-600 mb-3">
                         <strong>Input:</strong> Product name → <strong>Returns:</strong> Vendor name AND Category (as formatted string)
                     </p>
+
+                    <!-- Interactive Input Form -->
+                    <form method="GET" class="mb-4 bg-purple-50 p-4 rounded-lg">
+                        <div class="flex gap-3">
+                            <div class="flex-1">
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    <i class="fas fa-search mr-1"></i>Enter Product Name:
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="search_product_info" 
+                                    value="<?= htmlspecialchars($_GET['search_product_info'] ?? '') ?>"
+                                    placeholder="e.g., Organic Apple, Kale, Banana..."
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                                >
+                            </div>
+                            <div class="flex items-end">
+                                <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                                    <i class="fas fa-info-circle mr-2"></i>Get Info
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <?php if (isset($_GET['search_product_info']) && !empty($_GET['search_product_info'])): ?>
+                        <?php
+                        $search_product_info = $_GET['search_product_info'];
+                        $stmt = $pdo->prepare("SELECT get_product_info(?) as info");
+                        $stmt->execute([$search_product_info]);
+                        $result = $stmt->fetch();
+                        ?>
+                        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+                            <div class="font-bold text-purple-800 mb-1">
+                                <i class="fas fa-box mr-2"></i>Product: "<?= htmlspecialchars($search_product_info) ?>"
+                            </div>
+                            <div class="text-purple-700 font-mono text-sm">
+                                <i class="fas fa-arrow-right mr-2"></i><?= htmlspecialchars($result['info']) ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- All Products Table -->
+                    <div class="text-sm text-gray-600 mb-2 font-bold">All Products Info:</div>
                     <table class="w-full text-sm">
                         <thead class="bg-purple-100">
                             <tr>
@@ -218,7 +305,56 @@ try {
                 <p class="text-sm text-gray-600 mb-3">
                     <strong>Input:</strong> Product name → <strong>Returns:</strong> 2 separate values (vendor name + category)
                 </p>
+
+                <!-- Interactive Input Form -->
+                <form method="GET" class="mb-4 bg-blue-50 p-4 rounded-lg">
+                    <div class="flex gap-3">
+                        <div class="flex-1">
+                            <label class="block text-sm font-bold text-gray-700 mb-2">
+                                <i class="fas fa-search mr-1"></i>Enter Product Name:
+                            </label>
+                            <input 
+                                type="text" 
+                                name="search_product_proc" 
+                                value="<?= htmlspecialchars($_GET['search_product_proc'] ?? '') ?>"
+                                placeholder="e.g., Organic Apple, Kale, Banana..."
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            >
+                        </div>
+                        <div class="flex items-end">
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold transition">
+                                <i class="fas fa-cogs mr-2"></i>Execute Procedure
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <?php if (isset($_GET['search_product_proc']) && !empty($_GET['search_product_proc'])): ?>
+                    <?php
+                    $search_product_proc = $_GET['search_product_proc'];
+                    $stmt = $pdo->prepare("CALL get_product_details(?, @vendor, @category)");
+                    $stmt->execute([$search_product_proc]);
+                    $result = $pdo->query("SELECT @vendor as vendor_name, @category as category")->fetch();
+                    ?>
+                    <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded mb-4 border-l-4 border-blue-500">
+                        <div class="text-sm font-bold mb-3">
+                            Input: <span class="text-blue-600">"<?= htmlspecialchars($search_product_proc) ?>"</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-white p-3 rounded shadow-md">
+                                <div class="text-xs text-gray-500 mb-1">OUT Parameter 1: Vendor Name</div>
+                                <div class="font-bold text-green-600 text-lg"><?= htmlspecialchars($result['vendor_name']) ?></div>
+                            </div>
+                            <div class="bg-white p-3 rounded shadow-md">
+                                <div class="text-xs text-gray-500 mb-1">OUT Parameter 2: Category</div>
+                                <div class="font-bold text-purple-600 text-lg"><?= htmlspecialchars($result['category']) ?></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 
+                <!-- Example Results -->
+                <div class="text-sm text-gray-600 mb-2 font-bold">Example Results:</div>
                 <?php
                 // Test with different products
                 $test_products = ['Organic Apple', 'Kale', 'Almond Milk', 'Brown Rice'];
