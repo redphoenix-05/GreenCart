@@ -19,6 +19,7 @@ function isActive($page) {
                 <a href="products_list.php" class="px-4 py-2 rounded-lg transition <?= isActive('products_list.php') ?>"><i class="fas fa-box mr-2"></i>Products</a>
                 <a href="orders_list.php" class="px-4 py-2 rounded-lg transition <?= isActive('orders_list.php') ?>"><i class="fas fa-shopping-cart mr-2"></i>Orders</a>
                 <a href="delivery_list.php" class="px-4 py-2 rounded-lg transition <?= isActive('delivery_list.php') ?>"><i class="fas fa-shipping-fast mr-2"></i>Delivery</a>
+                <a href="demo_advanced_features.php" class="px-4 py-2 rounded-lg transition <?= $current_page === 'demo_advanced_features.php' ? 'bg-purple-500 font-semibold' : 'bg-purple-400 hover:bg-purple-500' ?>"><i class="fas fa-bolt mr-2"></i>SQL Features</a>
                 <a href="sql_ops.php" class="px-4 py-2 rounded-lg transition <?= $current_page === 'sql_ops.php' ? 'bg-yellow-500 font-semibold' : 'bg-yellow-400 hover:bg-yellow-500' ?>"><i class="fas fa-code mr-2"></i>SQL Ops</a>
             </div>
         </div>

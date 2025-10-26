@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Instructions - GreenCart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-16 max-w-3xl">
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-exclamation-triangle text-yellow-500 text-3xl mr-4"></i>
+                <h1 class="text-2xl font-bold text-yellow-800">Database Update Required</h1>
+            </div>
+            <p class="text-yellow-700 mb-4">
+                The new advanced SQL features (triggers, functions, ENUM types) have been added to the code, 
+                but your database needs to be updated with the new schema.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-list-ol mr-2 text-blue-600"></i>Setup Steps
+            </h2>
+
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mr-4">
+                        1
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg mb-2">Visit the Database Initialization Page</h3>
+                        <p class="text-gray-600 mb-3">
+                            Click the button below to go to the initialization page:
+                        </p>
+                        <a href="init_db.php" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                            <i class="fas fa-database mr-2"></i>Go to init_db.php
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold mr-4">
+                        2
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg mb-2">Reset the Database</h3>
+                        <p class="text-gray-600 mb-3">
+                            On the initialization page, click the <strong class="text-red-600">"Reset Database"</strong> link.
+                            This will drop all old tables and recreate them with the new schema including:
+                        </p>
+                        <ul class="list-disc ml-6 text-gray-700 space-y-1">
+                            <li>ENUM data types (customer_tier, stock_status, order status, delivery_status)</li>
+                            <li>New columns (loyalty_points, discount_applied)</li>
+                            <li>4 Database Triggers (auto-calculate subtotals, update totals, loyalty points, price validation)</li>
+                            <li>2 User-Defined Functions (calculate_discount, get_customer_tier)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold mr-4">
+                        3
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg mb-2">View the Advanced Features Demo</h3>
+                        <p class="text-gray-600 mb-3">
+                            After resetting, visit the demo page to see all the new features in action:
+                        </p>
+                        <a href="demo_advanced_features.php" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                            <i class="fas fa-rocket mr-2"></i>View Advanced Features Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mt-8">
+            <h3 class="font-bold text-blue-800 mb-2">
+                <i class="fas fa-info-circle mr-2"></i>What Gets Created?
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <h4 class="font-bold text-blue-700 mb-2">ENUM Data Types:</h4>
+                    <ul class="list-disc ml-5 text-blue-700 space-y-1">
+                        <li>customer_tier</li>
+                        <li>stock_status</li>
+                        <li>order status</li>
+                        <li>delivery_status</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-700 mb-2">Triggers:</h4>
+                    <ul class="list-disc ml-5 text-blue-700 space-y-1">
+                        <li>calculate_subtotal</li>
+                        <li>update_order_total</li>
+                        <li>update_loyalty_points</li>
+                        <li>check_product_price</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-700 mb-2">Functions:</h4>
+                    <ul class="list-disc ml-5 text-blue-700 space-y-1">
+                        <li>calculate_discount()</li>
+                        <li>get_customer_tier()</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-700 mb-2">New Columns:</h4>
+                    <ul class="list-disc ml-5 text-blue-700 space-y-1">
+                        <li>loyalty_points</li>
+                        <li>discount_applied</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <a href="index.php" class="text-gray-600 hover:text-gray-800 underline">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+</body>
+</html>
