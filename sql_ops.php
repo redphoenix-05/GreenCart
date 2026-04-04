@@ -1,22 +1,4 @@
 <?php
-/**
- * GreenCart - Advanced SQL Operations Showcase
- * 
- * This page demonstrates EVERY major SQL operation interactively:
- * ✓ JOINS (INNER, LEFT, RIGHT, FULL OUTER, CROSS, SELF)
- * ✓ Subqueries (scalar, row, table, correlated)
- * ✓ Set Operations (UNION, UNION ALL, INTERSECT, EXCEPT)
- * ✓ Aggregate Functions (COUNT, SUM, AVG, MAX, MIN)
- * ✓ GROUP BY and HAVING
- * ✓ Window Functions (ROW_NUMBER, RANK, DENSE_RANK)
- * ✓ CTEs (Common Table Expressions)
- * ✓ Pattern Matching (LIKE, REGEXP)
- * ✓ Views (CREATE, SELECT FROM, DROP)
- * ✓ Stored Procedures (CALL)
- * ✓ Triggers (demonstration)
- * ✓ Transactions (BEGIN, COMMIT, ROLLBACK)
- */
-
 require_once 'db.php';
 $pdo = getPDO();
 
@@ -483,7 +465,7 @@ $sql_demos['Stored Procedure (Simulated)'] = [
             <?php endforeach; ?>
         </div>
 
-        <!-- Additional SQL Concepts Documentation -->
+        <!-- Additional SQL Concepts Documentation
         <div class="mt-8 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl shadow-xl p-8">
             <h2 class="text-3xl font-bold mb-6">
                 <i class="fas fa-book mr-3"></i>Additional SQL Features Implemented
@@ -529,7 +511,7 @@ $sql_demos['Stored Procedure (Simulated)'] = [
                     <p class="mt-3 text-sm">Demonstrated above with CALL statement</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>
